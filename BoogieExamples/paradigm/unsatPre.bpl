@@ -1,4 +1,5 @@
 // VALID : true
+// SPECIFICATION
 
 var y:int;
 var z:int;

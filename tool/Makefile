@@ -1,19 +1,16 @@
 
-ANTLR = src/main/antlr4
 TOOL = src/main/java/org/VerificationTool
 TARGET = target
-GRAMMAR = boogie
+GRAMMAR = Boogie
+ANTLR = $(TOOL)/$(GRAMMAR)/*.java $(TOOL)/$(GRAMMAR)/*.interp $(TOOL)/$(GRAMMAR)/*.tokens
 
-all: antlr app
+all: grammar app
 
 app: $(TOOL)/App.java
 	mvn package
 
-antlr: $(ANTLR)/$(GRAMMAR).g4 antlrClasses
-	javac $(TARGET)/antlr/$(ANTLR)/boogie*.java
-
-antlrClasses: $(ANTLR)/$(GRAMMAR).g4
-	java org.antlr.v4.Tool $(ANTLR)/$(GRAMMAR).g4 -o $(TARGET)/antlr
-
+grammar: $(TOOL)/$(GRAMMAR).g4
+	java org.antlr.v4.Tool $(TOOL)/$(GRAMMAR).g4 -package org.VerificationTool.$(GRAMMAR) -o Boogie/
+	
 clean:
-	rm -r target
+	rm -r target $(ANTLR)
