@@ -1,0 +1,28 @@
+# Maven/Java
+tool/target
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*~
+*.bak
+*.orig
+
+# Node
+node_modules/
+dist/
+build/
+
