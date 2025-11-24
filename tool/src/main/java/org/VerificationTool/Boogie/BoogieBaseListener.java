@@ -17,13 +17,13 @@ public class BoogieBaseListener implements BoogieListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterR(BoogieParser.RContext ctx) { }
+	@Override public void enterSpec(BoogieParser.SpecContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitR(BoogieParser.RContext ctx) { }
+	@Override public void exitSpec(BoogieParser.SpecContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

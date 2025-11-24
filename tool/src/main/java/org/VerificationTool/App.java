@@ -38,7 +38,7 @@ public class App {
 
         BoogieParser parser = new BoogieParser(tokens);
 
-        ParseTree tree = parser.r();
+        ParseTree tree = parser.spec();
 
         System.out.println(tree.toStringTree(parser));
 

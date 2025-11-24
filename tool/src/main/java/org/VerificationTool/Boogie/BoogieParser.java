@@ -17,25 +17,27 @@ public class BoogieParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, ID=2, WS=3;
+		T__0=1, PROCEDURE=2, FREE=3, REQUIRES=4, MODIFIES=5, ENSURES=6, ID=7, 
+		WS=8, COMMENT=9, LINE_COMMENT=10;
 	public static final int
-		RULE_r = 0;
+		RULE_spec = 0;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"r"
+			"spec"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'hello'"
+			null, "';'", "'procedure'", "'free'", "'requires'", "'modifies'", "'ENSURES'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, "ID", "WS"
+			null, null, "PROCEDURE", "FREE", "REQUIRES", "MODIFIES", "ENSURES", "ID", 
+			"WS", "COMMENT", "LINE_COMMENT"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -90,32 +92,93 @@ public class BoogieParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class RContext extends ParserRuleContext {
+	public static class SpecContext extends ParserRuleContext {
+		public TerminalNode MODIFIES() { return getToken(BoogieParser.MODIFIES, 0); }
 		public TerminalNode ID() { return getToken(BoogieParser.ID, 0); }
-		public RContext(ParserRuleContext parent, int invokingState) {
+		public TerminalNode FREE() { return getToken(BoogieParser.FREE, 0); }
+		public TerminalNode REQUIRES() { return getToken(BoogieParser.REQUIRES, 0); }
+		public TerminalNode ENSURES() { return getToken(BoogieParser.ENSURES, 0); }
+		public SpecContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_r; }
+		@Override public int getRuleIndex() { return RULE_spec; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof BoogieListener ) ((BoogieListener)listener).enterR(this);
+			if ( listener instanceof BoogieListener ) ((BoogieListener)listener).enterSpec(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof BoogieListener ) ((BoogieListener)listener).exitR(this);
+			if ( listener instanceof BoogieListener ) ((BoogieListener)listener).exitSpec(this);
 		}
 	}
 
-	public final RContext r() throws RecognitionException {
-		RContext _localctx = new RContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_r);
+	public final SpecContext spec() throws RecognitionException {
+		SpecContext _localctx = new SpecContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_spec);
+		int _la;
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(2);
-			match(T__0);
-			setState(3);
-			match(ID);
+			setState(18);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(3);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==FREE) {
+					{
+					setState(2);
+					match(FREE);
+					}
+				}
+
+				setState(5);
+				match(MODIFIES);
+				setState(6);
+				match(ID);
+				setState(7);
+				match(T__0);
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(9);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==FREE) {
+					{
+					setState(8);
+					match(FREE);
+					}
+				}
+
+				setState(11);
+				match(REQUIRES);
+				setState(12);
+				match(T__0);
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(14);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==FREE) {
+					{
+					setState(13);
+					match(FREE);
+					}
+				}
+
+				setState(16);
+				match(ENSURES);
+				setState(17);
+				match(T__0);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -130,10 +193,22 @@ public class BoogieParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0003\u0006\u0002\u0000\u0007\u0000\u0001\u0000\u0001\u0000"+
-		"\u0001\u0000\u0001\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0004\u0000"+
-		"\u0002\u0001\u0000\u0000\u0000\u0002\u0003\u0005\u0001\u0000\u0000\u0003"+
-		"\u0004\u0005\u0002\u0000\u0000\u0004\u0001\u0001\u0000\u0000\u0000\u0000";
+		"\u0004\u0001\n\u0015\u0002\u0000\u0007\u0000\u0001\u0000\u0003\u0000\u0004"+
+		"\b\u0000\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0000\u0003\u0000\n"+
+		"\b\u0000\u0001\u0000\u0001\u0000\u0001\u0000\u0003\u0000\u000f\b\u0000"+
+		"\u0001\u0000\u0001\u0000\u0003\u0000\u0013\b\u0000\u0001\u0000\u0000\u0000"+
+		"\u0001\u0000\u0000\u0000\u0018\u0000\u0012\u0001\u0000\u0000\u0000\u0002"+
+		"\u0004\u0005\u0003\u0000\u0000\u0003\u0002\u0001\u0000\u0000\u0000\u0003"+
+		"\u0004\u0001\u0000\u0000\u0000\u0004\u0005\u0001\u0000\u0000\u0000\u0005"+
+		"\u0006\u0005\u0005\u0000\u0000\u0006\u0007\u0005\u0007\u0000\u0000\u0007"+
+		"\u0013\u0005\u0001\u0000\u0000\b\n\u0005\u0003\u0000\u0000\t\b\u0001\u0000"+
+		"\u0000\u0000\t\n\u0001\u0000\u0000\u0000\n\u000b\u0001\u0000\u0000\u0000"+
+		"\u000b\f\u0005\u0004\u0000\u0000\f\u0013\u0005\u0001\u0000\u0000\r\u000f"+
+		"\u0005\u0003\u0000\u0000\u000e\r\u0001\u0000\u0000\u0000\u000e\u000f\u0001"+
+		"\u0000\u0000\u0000\u000f\u0010\u0001\u0000\u0000\u0000\u0010\u0011\u0005"+
+		"\u0006\u0000\u0000\u0011\u0013\u0005\u0001\u0000\u0000\u0012\u0003\u0001"+
+		"\u0000\u0000\u0000\u0012\t\u0001\u0000\u0000\u0000\u0012\u000e\u0001\u0000"+
+		"\u0000\u0000\u0013\u0001\u0001\u0000\u0000\u0000\u0004\u0003\t\u000e\u0012";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

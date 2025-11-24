@@ -8,13 +8,13 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface BoogieListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link BoogieParser#r}.
+	 * Enter a parse tree produced by {@link BoogieParser#spec}.
 	 * @param ctx the parse tree
 	 */
-	void enterR(BoogieParser.RContext ctx);
+	void enterSpec(BoogieParser.SpecContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link BoogieParser#r}.
+	 * Exit a parse tree produced by {@link BoogieParser#spec}.
 	 * @param ctx the parse tree
 	 */
-	void exitR(BoogieParser.RContext ctx);
+	void exitSpec(BoogieParser.SpecContext ctx);
 }
