@@ -8,5 +8,6 @@ if [ "$#" -ne 1 ]; then
 fi
 
 # Run tool with file as first argument
-java -jar tool/target/research-tool-0.0.1.jar < $1
+mvn exec:java -Dexec.args="$1" -q
+
 

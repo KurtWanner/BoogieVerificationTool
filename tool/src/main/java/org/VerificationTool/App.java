@@ -1,8 +1,14 @@
 package org.VerificationTool;
 
 import org.VerificationTool.Boogie.*;
-
+import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.atn.*;
+import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 
 public class App {
@@ -15,8 +21,6 @@ public class App {
             System.err.println("Usage: java org.VerificationTool.App <input>");
             System.exit(1);
         }
-
-        BoogieLexer bl;
                 
         // Convert input into a CharStream
         CharStream cs;
@@ -28,7 +32,15 @@ public class App {
             return;
         }
 
-        System.out.println("Hello boogie!");
+        BoogieLexer lexer = new BoogieLexer(cs);
+
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+        BoogieParser parser = new BoogieParser(tokens);
+
+        ParseTree tree = parser.r();
+
+        System.out.println(tree.toStringTree(parser));
 
     }
 }
